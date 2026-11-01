@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bob-fe
+  namespace: app-bob
+spec:
+  type: ClusterIP
+  selector:
+    app: bob-fe
+  ports:
+    - port: 80
+      targetPort: 80

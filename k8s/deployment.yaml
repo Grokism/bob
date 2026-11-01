@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bob-fe
+  namespace: app-bob
+  labels:
+    app: bob-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bob-fe
+  template:
+    metadata:
+      labels:
+        app: bob-fe
+    spec:
+      # No secrets are mounted: this is a static, public SPA.
+      containers:
+        - name: bob-fe
+          image: ghcr.io/grokism/bob-fe:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
